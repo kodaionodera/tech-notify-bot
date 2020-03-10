@@ -38,9 +38,9 @@ task scrape: :environment do
 
   # デバッグ用
   # ---------------------
-  # pp value
-  # pp @image_url
-  # pp today
+  pp value
+  pp @image_url
+  pp today
   # ---------------------
 
   notify_slack(value) if value.include?(today)

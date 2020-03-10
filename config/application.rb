@@ -19,6 +19,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+
 module SlackTest
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -31,5 +32,7 @@ module SlackTest
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
   end
 end
