@@ -40,6 +40,7 @@ task scrape: :environment do
   # ---------------------
   pp value
   pp @image_url
+  pp Time.zone.now
   pp today
   # ---------------------
 
