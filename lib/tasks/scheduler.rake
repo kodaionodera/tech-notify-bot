@@ -33,8 +33,8 @@ task scrape: :environment do
   end
 
   @image_url.chop!.slice!(0, 22)
-
-  today = Time.zone.now.to_date.to_s.gsub('-', '_')
+  # FIXME 強引に合わせているのでheroku川の修正をする
+  today = Time.zone.now.yesterday.to_date.to_s.gsub('-', '_')
 
   # デバッグ用
   # ---------------------
