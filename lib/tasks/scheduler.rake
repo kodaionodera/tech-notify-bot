@@ -9,7 +9,7 @@ task :test_scheduler => :environment do
 end
 
 task scrape: :environment do
-  url = 'https://techracho.bpsinc.jp/'
+  url = ENV['URI']
 
   charset = nil
 
@@ -33,7 +33,7 @@ task scrape: :environment do
   end
 
   @image_url.chop!.slice!(0, 22)
-  # FIXME 強引に合わせているのでheroku川の修正をする
+  # FIXME 強引に合わせているのでheroku側の修正をする
   today = Time.zone.now.yesterday.to_date.to_s.gsub('-', '_')
 
   # デバッグ用
@@ -48,7 +48,7 @@ task scrape: :environment do
 end
 
 def notify_slack(value)
-  uri = URI.parse('https://hooks.slack.com/services/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')
+  uri = URI.parse(ENV['WEB_HOOKS_URI'])
   payload = {
     channel: "#tech_rachoニュース",
     username: "通知bot",
@@ -56,7 +56,7 @@ def notify_slack(value)
     attachments: [{
       fields: [
           {
-              "title": "TechRachoの新着記事が更新されました。",
+              "title": "新着記事が更新されました。",
               "value": value,
           }],
       image_url: @image_url
