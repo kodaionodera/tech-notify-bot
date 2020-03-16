@@ -28,7 +28,7 @@ task scrape: :environment do
 
   # 最新画像を取得
   doc.xpath('//div[@class="sidebar-article-thumb"]').each_with_index do |node, num|
-    next unless num == 0
+    next unless num.zero?
     @image_url = node.css('div').attribute('style').value
   end
 
